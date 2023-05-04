@@ -19,14 +19,41 @@ data <- read_csv(here::here("Data_Tables_Criminal_Incidents_Visualisation_Year_E
 data <- data %>% 
   filter(`Offence Subgroup` == 'B41 Motor vehicle theft')
 
+<<<<<<< HEAD
+=======
+```{r}
+library(tidyverse)
+library(dplyr)
+library(here)
+```
+
+
+```{r crime}
+crime <- read_csv(here::here("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 (2).csv"))
+>>>>>>> d9d49c73e700082cf6a342da7759a275c31cdd14
 ```
 
 ```{r}
 
+<<<<<<< HEAD
 ggplot(data = data, aes(x = Year, y = Incidents_Recorded)) +
   geom_line() +
   geom_point()
 ```
 
 The graph is interesting.
+=======
+You can also embed plots, for example:
+
+```{r driving-plot, echo=FALSE}
+dgr_driving <- crime %>% filter(`Offence Subgroup` == "A81 Dangerous driving") 
+
+
+dgr_driving %>% 
+  mutate(Year = as.factor(Year)) %>%
+  ggplot() + 
+  geom_col(aes(x = Year, y = `Incidents Recorded`))
+```
+
+>>>>>>> d9d49c73e700082cf6a342da7759a275c31cdd14
 
