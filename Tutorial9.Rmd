@@ -14,19 +14,44 @@ knitr::opts_chunk$set(echo = FALSE,
                       fig.path = "Figures/")
 ```
 
+
 ```{r}
 library(tidyverse)
+library(dplyr)
+library(here)
 ```
+
 ```{r}
 accident <-  read_csv(here::here('Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 (2).csv'))
+
+## R Markdown
+
+```
+
+```{r crime}
+crime <- read_csv(here::here("Data_Tables_Criminal_Incidents_Visualisation_Year_Ending_December_2019 (2).csv"))
+
 ```
 
 ```{r}
 accidentfilter <- accident %>%
   filter(`Offence Subdivision` == "B40 Theft")
 
+
 ggplot(data = accidentfilter, aes(x=Year, y=`Incidents Recorded`)) +
   geom_point()
+
+```
+
+```{r driving-plot, echo=FALSE}
+dgr_driving <- crime %>% filter(`Offence Subgroup` == "A81 Dangerous driving") 
+
+
+dgr_driving %>% 
+  mutate(Year = as.factor(Year)) %>%
+  ggplot() + 
+  geom_col(aes(x = Year, y = `Incidents Recorded`))
+
 ```
 
 
